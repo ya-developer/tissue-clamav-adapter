@@ -73,6 +73,7 @@ class ClamAvAdapter extends AbstractAdapter
         if ($this->usesDaemon($this->clamScanPath)) {
             // Pass filedescriptor to clamd (useful if clamd is running as a different user)
             $pb->add('--fdpass');
+            $pb->add('--stream');
         } elseif ($this->databasePath !== null) {
             // Only the (isolated) binary version can change the signature-database used
             $pb->add(sprintf('--database=%s', $this->databasePath));
